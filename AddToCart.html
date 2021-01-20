@@ -1,0 +1,158 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title></title>
+    <link rel="stylesheet" href="Style.css" />
+    <script>
+        //function display() {
+        //    for (var i = 1; i <= 3; i++) {
+        //        if (sessionStorage.getItem(' + i + '))
+        //            console.log(i);
+        //    }
+        //}
+
+        function Loadinformation() {
+
+            var olddata = sessionStorage.getItem("Cartdetails");
+            addTable(olddata);
+            document.getElementById('lblCardDetails').innerHTML = olddata;
+
+            //var rows = olddata.split(';');
+            //for (var i = 1; i <= 3; i++) {
+            //    var columns = rows[i].split('~');
+            //    var soupname = columns[0];
+            //    var grams = columns[1];
+
+
+            //    addRow(soupname, grams, 30)
+            //}
+
+        }
+
+        function addRow(soupname, Grams, Price) {
+
+
+
+            var rowCount = table.rows.length;
+            var row = table.insertRow(rowCount);
+
+            row.insertCell(0).innerHTML = soupname;
+            row.insertCell(1).innerHTML = Grams;
+            row.insertCell(2).innerHTML = Price;
+
+        }
+
+        //function deleteRow(obj) {
+
+        //    var index = obj.parentNode.parentNode.rowIndex;
+        //    var table = document.getElementById("myTableData");
+        //    table.deleteRow(index);
+
+        //}
+
+        function addTable(olddata) {
+
+            var myTableDiv = document.getElementById("myDynamicTable");
+
+            var table = document.createElement('TABLE');
+            table.border = '1';
+            table.className = "cart-table";
+
+
+            var tableBody = document.createElement('TBODY');
+            table.appendChild(tableBody);
+
+            var rows = olddata.split(';');
+
+
+
+
+            for (var i = 0; i < rows.length; i++) {
+                var tr = document.createElement('TR');
+                tableBody.appendChild(tr);
+
+                var columns = rows[i].split('~');
+                var soupname = columns[0];
+                var grams = columns[1];
+                var price = columns[2];
+
+
+                for (var j = 0; j < 3; j++) {
+                    var td = document.createElement('TD');
+                    td.width = '75';
+                    td.appendChild(document.createTextNode(columns[j]));
+                    tr.appendChild(td);
+                }
+            }
+
+            myTableDiv.appendChild(table);
+
+        }
+
+    </script>
+    <style>
+        .cart-table {
+            width: 100%;
+            background-color: aqua;
+            text-align: center;
+        }
+
+        body {
+            background-color: aquamarine;
+        }
+
+        span {
+            color: black;
+        }
+
+        #a {
+            padding: 190px;
+        }
+
+        #b {
+            padding-left: 215px;
+        }
+
+        #c {
+            padding-left: 360px;
+        }
+
+        .total {
+            float: right;
+            padding-right: 210px;
+        }
+
+        .placebutton {
+            float: right;
+            padding-right: 100px;
+        }
+
+        .button {
+            font-size: 20px;
+            transition-duration: 0.4s;
+        }
+
+            .button:hover {
+                background-color: white;
+            }
+    </style>
+</head>
+<body onload="javascript:Loadinformation();">
+    <div class="parallax">
+        <div class="page-title">
+            Cart
+        </div>
+    </div>
+    <span id="a">Product</span>
+    <span id="b">Quantity</span>
+    <span id="c">Price(₹)</span>
+    <div id="myDynamicTable">
+    </div>
+    <br />
+    <div class="total"><b>Total: &nbsp;  &nbsp; &nbsp;  ₹2280</b></div><br /><br />
+    <div class="placebutton"><a href="OrderSummary.html"><input type="submit" class="button" value="Place Order" /></a></div>
+
+</body>
+</html>
+

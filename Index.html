@@ -1,0 +1,474 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title></title>
+    <link rel="stylesheet" href="Style.css" />
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" />
+    <script>
+        var cartinformation = 0;
+        function stickyMenu() {
+            var sticky = document.getElementById('sticky');
+            if (window.pageYOffset > 220) {
+                sticky.classList.add('sticky');
+            }
+            else {
+                sticky.classList.remove('sticky');
+            }
+        }
+
+        window.onscroll = function () {
+            stickyMenu();
+        }
+        function searchfunc() {
+            var input, filter, ul, li, a, i;
+            input = document.getElementById("myInput");
+            filter = input.value.toUpperCase();
+            a = document.getElementsByClassName("dropdown-item");
+            for (i = 0; i < a.length; i++) {
+                txtValue = a[i].textContent || a[i].innerText;
+                console.log(1);
+                if (txtValue.toUpperCase().indexOf(filter) > -1 && filter.length != 0) {
+                    a[i].style.display = "block";
+                } else {
+                    a[i].style.display = "none";
+                }
+            }
+        }
+        //function addCart(item) {
+        //    sessionStorage.setItem(' + item + ', "true");
+        //    console.log(sessionStorage.getItem(' + item + '));
+        //}
+
+        function AddtoCart(soupname) {
+
+            var grams = 250;;
+            var price = 0;
+            
+            if (cartinformation == "")
+                cartinformation = 1;
+            else
+                cartinformation = 1 + cartinformation;
+
+
+            if (soupname == "VegSoup") {
+                var e = document.getElementById("selectVegSoupGram");
+                grams = e.options[e.selectedIndex].text;
+                price ='₹' + e.options[e.selectedIndex].value * 30;
+                
+            }
+
+            else if ((soupname == "ChickenSoup")) {
+                var e = document.getElementById("selectChickenSoupGram");
+                grams = e.options[e.selectedIndex].text;
+                price = '₹' + e.options[e.selectedIndex].value * 50;
+            }
+            else if ((soupname == "clearsoup")) {
+                var e = document.getElementById("selectclearsoupgrams");
+                grams = e.options[e.selectedIndex].text;
+                price = '₹' + e.options[e.selectedIndex].value * 80;
+            }
+            else if ((soupname == "VegBiriyani")) {
+                var e = document.getElementById("selectvegbiriyanigrams");
+                grams = e.options[e.selectedIndex].text;
+                price = '₹' + e.options[e.selectedIndex].value * 60;
+            }
+            else if ((soupname == "VegCurry")) {
+                var e = document.getElementById("selectvegcurrygrams");
+                grams = e.options[e.selectedIndex].text;
+                price = '₹' + e.options[e.selectedIndex].value * 80;
+            }
+            else if ((soupname == "Rice")) {
+                var e = document.getElementById("selectricegrams");
+                grams = e.options[e.selectedIndex].text;
+                price = '₹' + e.options[e.selectedIndex].value * 70;
+            }
+            else if ((soupname == "PannerTikka")) {
+                var e = document.getElementById("selectpannertikkagrams");
+                grams = e.options[e.selectedIndex].text;
+                price = '₹' + e.options[e.selectedIndex].value * 100;
+            }
+            else if ((soupname == "VegCombo")) {
+                var e = document.getElementById("selectvegcombograms");
+                grams = e.options[e.selectedIndex].text;
+                price = '₹' + e.options[e.selectedIndex].value * 90;
+            }
+            else if ((soupname == "ChickenBiriyani")) {
+                var e = document.getElementById("selectchickenbiriyanigrams");
+                grams = e.options[e.selectedIndex].text;
+                price = '₹' + e.options[e.selectedIndex].value * 160;
+            }
+            else if ((soupname == "ChickenCurry")) {
+                var e = document.getElementById("selectchickencurrygrams");
+                grams = e.options[e.selectedIndex].text;
+                price = '₹' + e.options[e.selectedIndex].value * 130;
+            }
+            else if ((soupname == "ChickenLolipop")) {
+                var e = document.getElementById("selectchickenlolipopgrams");
+                grams = e.options[e.selectedIndex].text;
+                price = '₹' + e.options[e.selectedIndex].value * 160;
+            }
+            else if ((soupname == "NonVegCombo")) {
+                var e = document.getElementById("selectnonvegcombograms");
+                grams = e.options[e.selectedIndex].text;
+                price = '₹' + e.options[e.selectedIndex].value * 105;
+            }
+            else if ((soupname == "GrillChicken")) {
+                var e = document.getElementById("selectgrillchickengrams");
+                grams = e.options[e.selectedIndex].text;
+                price = '₹' + e.options[e.selectedIndex].value * 200;
+            }
+
+
+            var newdata = "";
+            var soupdetails = soupname + "~" + grams + "~" + price;
+            var olddata = sessionStorage.getItem("Cartdetails");
+            if (olddata == null)
+                newdata = soupdetails;
+            else
+                newdata = olddata + ";" + soupdetails;
+
+            sessionStorage.setItem("Cartdetails", newdata);
+
+            document.getElementById('lblCartDetails').innerText = cartinformation;
+        }
+
+
+    </script>
+
+
+</head>
+<body>
+    <div class="parallax">
+        <div class="page-title">
+            Kitchen Story
+        </div>
+    </div>
+    <div class="menu" id="sticky">
+        <ul class="menu-ul">
+            <a href="#" class="a-menu"><li>Home</li></a>
+            <a href="#soup" class="a-menu"><li>Soup</li></a>
+            <a href="#veg-items" class="a-menu"><li>Veg-items</li></a>
+            <a href="#NonVeg-items" class="a-menu"><li>NonVeg-items</li></a>
+            <a href="AddToCart.html" class="a-menu"><li>Cart</li></a>
+            <li><a href="Login.html" class="a-menu">Login</a></li>
+            <li><a href="Register.html" class="a-menu">Register</a></li>
+        </ul>
+        <div>
+            <label id="lblCartDetails"></label>
+        </div>
+        <div class="search-box" id="myDropdown">
+            <form>
+                <input type="text" placeholder="Search" name="search" class="search-input" id="myInput" onkeyup="searchfunc()" />
+
+                <button type="submit"><i class="fa fa-search"></i></button>
+            </form>
+        </div>
+        <div class="dropdown-content">
+            <ul class="dropdown-list">
+                <li><a href="#soup" class="dropdown-item">Clear Soup</a></li>
+                <li><a href="#soup" class="dropdown-item">Veg Soup</a></li>
+                <li><a href="#soup" class="dropdown-item">Chicken Soup</a></li>
+                <li><a href="#veg-items" class="dropdown-item">Veg Biriyani</a></li>
+                <li><a href="#veg-items" class="dropdown-item">Veg Curry</a></li>
+                <li><a href="#veg-items" class="dropdown-item">Rice</a></li>
+                <li><a href="#veg-items" class="dropdown-item">Veg Combo</a></li>
+                <li><a href="#veg-items" class="dropdown-item">Panner Tikka</a></li>
+                <li><a href="#NonVeg-items" class="dropdown-item">Chicken Biriyani</a></li>
+                <li><a href="#NonVeg-items" class="dropdown-item">Chicken Curry</a></li>
+                <li><a href="#NonVeg-items" class="dropdown-item">Chicken Lolipop</a></li>
+                <li><a href="#NonVeg-items" class="dropdown-item">NonVeg Combo</a></li>
+                <li><a href="#NonVeg-items" class="dropdown-item">Grill Chicken</a></li>
+
+            </ul>
+        </div>
+    </div>
+    <div class="container">
+        <a href="#soup">
+            <div class="container-categories">
+                <img src="images/clear-soup.jpg" class="item-image" />
+                <div class="image-title">Soup</div>
+            </div>
+        </a>
+        <a href="#veg-items">
+            <div class="container-categories">
+                <img src="images/veg-item.jpg" class="item-image" />
+                <div class="image-title">Veg-items</div>
+            </div>
+        </a>
+        <a href="#NonVeg-items">
+            <div class="container-categories">
+                <img src="images/nonveg-item.jpg" class="item-image" />
+                <div class="image-title">NonVeg-items</div>
+            </div>
+        </a>
+    </div>
+    <div class="deals-container" id="soup">
+        <div class="parallax">
+            <div class="title">SOUP</div>
+        </div>
+        <div class="items" id="clearsoup">
+            <div class="images">
+                <img src="images/clear-soup.jpg" class="item-image-size" />
+            </div>
+            <div class="description">
+                <b>Clear Soup</b><br />
+                <div class="item-select">
+                    Price : 30/250grams
+                </div>
+                <label>Qty:</label>
+                <select class="item-select" id="selectclearsoupgrams">
+                    <option value="1">250 grams</option>
+                    <option value="2">500 grams</option>
+                    <option value="3">750 grams</option>
+                    <option value="4">1000 grams</option>
+                </select><br />
+                <button class="buynow-btn" onclick="javascript:AddtoCart('clearsoup')">Buy Now</button>
+            </div>
+        </div>
+        <div class="items" id="VegSoup">
+            <div class="images">
+                <img src="images/Veg-soup.jpg" class="item-image-size" />
+            </div>
+            <div class="description">
+                <b>Veg-Soup</b><br />
+                <div class="item-select">
+                    Price : 50/250grams
+                </div>
+                <label>Qty:</label>
+                <select class="item-select" id="selectVegSoupGram">
+                    <option value="1">250 grams</option>
+                    <option value="2">500 grams</option>
+                    <option value="3">750 grams</option>
+                    <option value="4">1000 grams</option>
+                </select><br />
+                <button class="buynow-btn" onclick="javascript:AddtoCart('VegSoup')">Buy Now</button>
+            </div>
+        </div>
+        <div class="items" id="ChickenSoup">
+            <div class="images">
+                <img src="images/chicken-soup.jpg" class="item-image-size" />
+            </div>
+            <div class="description">
+                <b>Chicken Soup</b><br />
+                <div class="item-select">
+                    Price : 80/250grams
+                </div>
+                <label>Qty:</label>
+                <select class="item-select" id="selectChickenSoupGram">
+                    <option value="1">250 grams</option>
+                    <option value="2">500 grams</option>
+                    <option value="3">750 grams</option>
+                    <option value="4">1000 grams</option>
+                </select><br />
+                <button class="buynow-btn" onclick="javascript:AddtoCart('ChickenSoup')">Buy Now</button>
+            </div>
+        </div>
+    </div>
+    <div class="deals-container" id="veg-items">
+        <div class="parallax">
+            <div class="title">VEG-FOOD</div>
+        </div>
+        <div class="items" id="VegBiriyani">
+            <div class="images">
+                <img src="images/veg-biriyani.jpg" class="item-image-size" />
+            </div>
+            <div class="description">
+                <b>Veg-Biriyani</b><br />
+                <div class="item-select">
+                    Price : 60/250grams
+                </div>
+                <label>Qty:</label>
+                <select class="item-select" id="selectvegbiriyanigrams">
+                    <option value="1">250 grams</option>
+                    <option value="2">500 grams</option>
+                    <option value="3">750 grams</option>
+                    <option value="4">1000 grams</option>
+                </select><br />
+                <button class="buynow-btn" onclick="javascript:AddtoCart('VegBiriyani')">Buy Now</button>
+            </div>
+        </div>
+        <div class="items" id="VegCurry">
+            <div class="images">
+                <img src="images/veg-curry.jpg" class="item-image-size" />
+            </div>
+            <div class="description">
+                <b>Veg-Curry</b><br />
+                <div class="item-select">
+                    Price : 80/250grams
+                </div>
+                <label>Qty:</label>
+                <select class="item-select" id="selectvegcurrygrams">
+                    <option value="1">250 grams</option>
+                    <option value="2">500 grams</option>
+                    <option value="3">750 grams</option>
+                    <option value="4">1000 grams</option>
+                </select><br />
+                <button class="buynow-btn" onclick="javascript:AddtoCart('VegCurry')">Buy Now</button>
+            </div>
+        </div>
+        <div class="items" id="Rice">
+            <div class="images">
+                <img src="images/rice.jpg" class="item-image-size" />
+            </div>
+            <div class="description">
+                <b>Rice</b><br />
+                <div class="item-select">
+                    Price : 70/250grams
+                </div>
+                <label>Qty:</label>
+                <select class="item-select" id="selectricegrams">
+                    <option value="1">250 grams</option>
+                    <option value="2">500 grams</option>
+                    <option value="3">750 grams</option>
+                    <option value="4">1000 grams</option>
+                </select><br />
+                <button class="buynow-btn" onclick="javascript:AddtoCart('Rice')">Buy Now</button>
+            </div>
+        </div>
+        <div class="items" id="PannerTikka">
+            <div class="images">
+                <img src="images/Panner-tikka.jpg" class="item-image-size" />
+            </div>
+            <div class="description">
+                <b>Panner-Tikka</b><br />
+                <div class="item-select">
+                    Price : 100/250grams
+                </div>
+                <label>Qty:</label>
+                <select class="item-select" id="selectpannertikkagrams">
+                    <option value="1">250 grams</option>
+                    <option value="2">500 grams</option>
+                    <option value="3">750 grams</option>
+                    <option value="4">1000 grams</option>
+                </select><br />
+                <button class="buynow-btn" onclick="javascript:AddtoCart('PannerTikka')">Buy Now</button>
+            </div>
+        </div>
+        <div class="items" id="VegCombo">
+            <div class="images">
+                <img src="images/veg-item.jpg" class="item-image-size" />
+            </div>
+            <div class="description">
+                <b>Veg-Combo</b><br />
+                <div class="item-select">
+                    Price : 90/250grams
+                </div>
+                <label>Qty:</label>
+                <select class="item-select" id="selectvegcombograms">
+                    <option value="1">250 grams</option>
+                    <option value="2">500 grams</option>
+                    <option value="3">750 grams</option>
+                    <option value="4">1000 grams</option>
+                </select><br />
+                <button class="buynow-btn" onclick="javascript:AddtoCart('VegCombo')">Buy Now</button>
+            </div>
+        </div>
+
+    </div>
+    <div class="deals-container" id="NonVeg-items">
+        <div class="parallax">
+            <div class="title">NONVEG-FOOD</div>
+        </div>
+        <div class="items" id="ChickenBiriyani">
+            <div class="images">
+                <img src="images/chicken-biriyani.jpg" class="item-image-size" />
+            </div>
+            <div class="description">
+                <b>Chicken-Biriyani</b><br />
+                <div class="item-select">
+                    Price : 160/250grams
+                </div>
+                <label>Qty:</label>
+                <select class="item-select" id="selectchickenbiriyanigrams">
+                    <option value="1">250 grams</option>
+                    <option value="2">500 grams</option>
+                    <option value="3">750 grams</option>
+                    <option value="4">1000 grams</option>
+                </select><br />
+                <button class="buynow-btn" onclick="javascript:AddtoCart('ChickenBiriyani')">Buy Now</button>
+            </div>
+        </div>
+        <div class="items" id="ChickenCurry">
+            <div class="images">
+                <img src="images/chicken-curry.jpg" class="item-image-size" />
+            </div>
+            <div class="description">
+                <b>Chicken-Curry</b><br />
+                <div class="item-select">
+                    Price : 130/250grams
+                </div>
+                <label>Qty:</label>
+                <select class="item-select" id="selectchickencurrygrams">
+                    <option value="1">250 grams</option>
+                    <option value="2">500 grams</option>
+                    <option value="3">750 grams</option>
+                    <option value="4">1000 grams</option>
+                </select><br />
+                <button class="buynow-btn" onclick="javascript:AddtoCart('ChickenCurry')">Buy Now</button>
+            </div>
+        </div>
+        <div class="items" id="ChickenLolipop">
+            <div class="images">
+                <img src="images/chicken-lolipop.jpg" class="item-image-size" />
+            </div>
+            <div class="description">
+                <b>Chicken-Lolipop</b><br />
+                <div class="item-select">
+                    Price : 160/250grams
+                </div>
+                <label>Qty:</label>
+                <select class="item-select" id="selectchickenlolipopgrams">
+                    <option value="1">250 grams</option>
+                    <option value="2">500 grams</option>
+                    <option value="3">750 grams</option>
+                    <option value="4">1000 grams</option>
+                </select><br />
+                <button class="buynow-btn" onclick="javascript:AddtoCart('ChickenLolipop')">Buy Now</button>
+            </div>
+        </div>
+        <div class="items" id="NonVegCombo">
+            <div class="images">
+                <img src="images/nonveg-item.jpg" class="item-image-size" />
+            </div>
+            <div class="description">
+                <b>NonVeg-Combo</b><br />
+                <div class="item-select">
+                    Price : 105/250grams
+                </div>
+                <label>Qty:</label>
+                <select class="item-select" id="selectnonvegcombograms">
+                    <option value="1">250 grams</option>
+                    <option value="2">500 grams</option>
+                    <option value="3">750 grams</option>
+                    <option value="4">1000 grams</option>
+                </select><br />
+                <button class="buynow-btn" onclick="javascript:AddtoCart('NonVegCombo')">Buy Now</button>
+            </div>
+        </div>
+        <div class="items" id="GrillChicken">
+            <div class="images">
+                <img src="images/grill-chicken.jpg" class="item-image-size" />
+            </div>
+            <div class="description">
+                <b>Grill-Chicken</b><br />
+                <div class="item-select">
+                    Price : 200/half
+                </div>
+                <label>Qty:</label>
+                <select class="item-select" id="selectgrillchickengrams">
+                    <option value="1">1/4-Quarter</option>
+                    <option value="2">1/2-Half</option>
+                    <option value="3">1-Full</option>
+                </select><br />
+                <button class="buynow-btn" onclick="javascript:AddtoCart('GrillChicken')">Buy Now</button>
+            </div>
+        </div>
+
+    </div>
+    <div class="copyrights">
+        <i class="far fa-copyright fa-lx"></i>2020 By Programers Web Drive
+    </div>
+
+</body>
+</html>

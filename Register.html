@@ -1,0 +1,112 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
+    <style>
+        body {
+            font-size: 13px;
+            line-height: 19px;
+            color: #111;
+            background: linear-gradient(to bottom, #ff9933 0%, #ffcc66 104%);
+        }
+
+        .first {
+            background-image: url(images/foodlogo.jpg);
+            height: auto;
+            background-attachment: fixed;
+            background-position: center;
+            background-repeat: no-repeat;
+            background-size: cover;
+        }
+
+        .title {
+            text-align: center;
+            font-size: xx-large;
+            background: rgba(0,0,0,0.5);
+            text-align: center;
+            color: white;
+            padding: 50px;
+            font-variant: small-caps;
+            font-size: 100px;
+            font-family: fantasy;
+            letter-spacing: 20px;
+        }
+
+        .container {
+            width: 500px;
+            margin: auto;
+        }
+
+        .innerbox {
+            align-items: center;
+            border: 1px solid white;
+            height: 500px;
+            width: 500px;
+            padding: 10px;
+            font-size: 20px;
+        }
+
+        h1 {
+            text-align: center;
+        }
+
+        .namebox, .numberbox, .emailbox, .passbox, .Register {
+            padding: 10px 10px 10px 10px;
+            font-family: "Amazon Ember",Arial,sans-serif;
+        }
+
+        .a, .b, .c, .d {
+            height: 25px;
+            width: 300px;
+        }
+
+        #button {
+            background-color: darkorange;
+            font-size: 20px;
+            transition-duration: 0.4s;
+        }
+
+            #button:hover {
+                background-color: white;
+            }
+    </style>
+    <meta charset="utf-8" />
+    <title>Kitchen story register</title>
+</head>
+<body>
+    <div class="first">
+        <div class="title"><b>Kitchen story</b></div>
+    </div>
+    <div class="container">
+
+        <div class="innerbox">
+            <h1>Create an account for free.</h1>
+            <div class="namebox">
+                <label for="custname" class="name">Your name</label><br />
+                <input type="text" class="d" name="custName" maxlength="25" placeholder="Name" required />
+            </div>
+            <div class="numberbox">
+                <label for="custno" class="number">Your number</label><br />
+                <div>
+
+                    <input type="tel" class="a" name="custNo" maxlength="10" placeholder="Mobile number" required />
+                </div>
+            </div>
+            <div class="emailbox">
+                <label for="custmail" class="email">Your email</label><br />
+                <input type="email" class="b" name="custMail" placeholder="Email" required />
+            </div>
+            <div class="passbox">
+                <label for="custpass" class="pass">Password</label><br />
+                <input type="password" class="c" name="custPass" placeholder="Password" required />
+            </div>
+            <div class="Register">
+                <span class="Registerbtn">
+                    <a href="Index.html"><input type="submit" id="button" name="save" class="btn btn-primary" value="Register" /></a>
+                </span>
+            </div>
+        </div>
+    </div>
+
+</body>
+</html>
